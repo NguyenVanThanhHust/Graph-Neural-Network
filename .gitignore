@@ -1,5 +1,7 @@
 # libs
 pytorch_sparse
+uva_tutorial/data/
+uva_tutorial/saved_models/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
