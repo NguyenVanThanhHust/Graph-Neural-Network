@@ -2,7 +2,7 @@
 pytorch_sparse
 uva_tutorial/data/
 uva_tutorial/saved_models/
-
+*.tar
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
