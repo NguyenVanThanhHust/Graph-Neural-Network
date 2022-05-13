@@ -24,9 +24,15 @@ WORKDIR /git_intstalled_lib/
 RUN  git clone --recurse-submodules https://github.com/dmlc/dgl.git
 WORKDIR /git_intstalled_lib/dgl/build
 RUN cmake -DUSE_CUDA=ON .. && make -j4
+WORKDIR /git_intstalled_lib/dgl/python
+RUN python setup.py install 
+
+RUN echo "alias ..='cd ..'" >> ~/.bashrc
+RUN echo "alias h='history'" >> ~/.bashrc
+RUN echo "alias hg='history | grep '" >> ~/.bashrc
+RUN echo "alias ju='jupyter notebook --ip 0.0.0.0  --port 8896 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password='''" >> ~/.bashrc
 
 WORKDIR /workspace/
-
 
 ARG USERNAME=thanhnv
 ARG USER_UID=1000
@@ -42,9 +48,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
-# ********************************************************
-# * Anything else you want to do like clean up goes here *
-# ********************************************************
+********************************************************
+* Anything else you want to do like clean up goes here *
+********************************************************
 
-# [Optional] Set the default user. Omit if you want to keep the default as root.
+[Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
