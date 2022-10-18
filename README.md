@@ -12,5 +12,5 @@ cd dockerfiles && docker build -t gnn_image -f gnn_dockerfile . && cd -
 
 Build docker container
 ```
-docker run -it --rm --name gnn_container --user="$(id -u):$(id -g)" --gpus=all -p 6006:6006 --shm-size 8G --volume="$PWD:/workspace/" gnn_image:latest /bin/bash
+docker run -it --rm --name gnn_container --user="$(id -u):$(id -g)" --gpus=all -p 8891:8891 --shm-size 8G --volume="$PWD:/workspace/" gnn_image:latest /bin/bash
 ```
