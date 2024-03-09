@@ -1,19 +1,15 @@
-FROM pytorch/pytorch:2.0.0-cuda11.7-cudnn8-devel
+FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-devel
+
+ARG DEBIAN_FRONTEND=noninteractive
+
 RUN python -m pip install opencv-python einops matplotlib jpeg4py \
         tqdm timm pyyaml yacs easydict tensorboardX
 RUN apt-get update && apt-get -y install libgl1 libssl-dev build-essential manpages-dev
 RUN apt-get update -y && apt install -y build-essential libglib2.0-0 git vim fish
 RUN python -m pip install scipy Pillow pandas scikit-image seaborn scipy cmake
 
-RUN python -m pip install git+https://github.com/pyg-team/pyg-lib.git
-RUN pip3 install  dglgo -f https://data.dgl.ai/wheels-test/repo.html
-
-RUN python -m pip install pytorch-lightning pybind11 albumentations
-RUN python -m pip install pyg-lib -f https://data.pyg.org/whl/torch-2.0.0+11.7.html
-RUN python -m pip install torch-scatter -f https://data.pyg.org/whl/torch-2.0.0+11.7.html
-RUN python -m pip install torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-2.0.0+11.7.html
-RUN python -m pip install torch-cluster -f https://data.pyg.org/whl/torch-2.0.0+11.7.html
-RUN python -m pip install torch-spline-conv -f https://data.pyg.org/whl/torch-2.0.0+11.7.html
+RUN python -m pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.1.0+cu118.html
 RUN python -m pip install torch_geometric
 
+RUN python -m pip install wandb
 WORKDIR /workspace/
